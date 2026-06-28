@@ -1,0 +1,15 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#20322A"/>
+  <path d="M0 463C144 432 341 428 510 485C678 541 836 571 1024 527C1212 483 1384 376 1600 394V1200H0V463Z" fill="#365746"/>
+  <path d="M0 716C229 664 446 668 621 728C795 788 962 825 1128 792C1294 758 1438 668 1600 681V1200H0V716Z" fill="#101A16"/>
+  <circle cx="1240" cy="196" r="84" fill="#F4D28B"/>
+  <rect x="240" y="452" width="648" height="344" rx="32" fill="#F8EAD2"/>
+  <path d="M196 491L566 251L940 491H196Z" fill="#8C5638"/>
+  <rect x="580" y="579" width="236" height="149" fill="#F5BB6F"/>
+  <rect x="322" y="595" width="166" height="201" fill="#C7936B"/>
+  <circle cx="1030" cy="738" r="54" fill="#F4D28B"/>
+  <circle cx="1160" cy="682" r="32" fill="#F4D28B"/>
+  <circle cx="1264" cy="770" r="43" fill="#F4D28B"/>
+  <rect x="855" y="923" width="480" height="112" rx="56" fill="#FFF7EC"/>
+  <text x="1095" y="992" text-anchor="middle" fill="#365746" font-family="Georgia, serif" font-size="50">Evening at Heavenrock</text>
+</svg>

@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Heavenrock Guesthouse Website
 
-## Getting Started
+This project is a Next.js website for Heavenrock Guesthouse with a Supabase-backed photo gallery. It is designed for Vercel deployment and can show newly added resort photos dynamically.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router for the website
+- Supabase Storage for photo files
+- Supabase Postgres for gallery metadata
+- Vercel for hosting and deployment
+
+## Local development
+
+1. Open the project folder:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd heavenrock-guesthouse
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Copy the environment template and add your Supabase values:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Start the development server:
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open http://localhost:3000.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Supabase setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create a Supabase project.
+2. In Storage, create a public bucket named `heavenrock-gallery`.
+3. Inside that bucket, upload photos into a `gallery/` folder.
+4. Run the SQL in `supabase/gallery.sql` in the Supabase SQL editor.
+5. Add these environment variables to `.env.local`:
 
-## Deploy on Vercel
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_BUCKET=heavenrock-gallery
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How photo updates work
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- If `gallery_photos` rows exist and are marked `is_published = true`, the homepage reads them first.
+- If no rows exist, the homepage falls back to listing files from the `gallery/` folder in Supabase Storage.
+- Because the home page is server-rendered dynamically, new photos can appear without rebuilding the site.
+
+## Adding new gallery images
+
+1. Upload a photo to the `gallery/` folder in the `heavenrock-gallery` bucket.
+2. Insert a matching row into `gallery_photos` with the `image_path`, title, description, and sort order.
+3. Refresh the site.
+
+Example `image_path`:
+
+```text
+gallery/sunset-lawn.jpg
+```
+
+## Deploy to Vercel
+
+1. Push this project to GitHub.
+2. In Vercel, import the repository.
+3. Set the project root to `heavenrock-guesthouse` if you deploy from the current workspace structure.
+4. Add the same three environment variables in the Vercel project settings.
+5. Deploy.
+
+## Notes
+
+- Until Supabase is configured, the site shows built-in placeholder gallery artwork.
+- The current content is based on the public Heavenrock listing and is structured so you can expand room, pricing, and amenity details later.

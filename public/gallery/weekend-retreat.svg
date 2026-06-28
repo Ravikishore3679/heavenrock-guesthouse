@@ -1,0 +1,14 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#EFE2CF"/>
+  <path d="M0 841C171 781 308 769 477 803C647 838 775 911 946 915C1118 918 1313 853 1600 732V1200H0V841Z" fill="#7C9B85"/>
+  <path d="M0 924C198 889 357 888 534 934C711 980 855 1038 1026 1020C1198 1003 1389 918 1600 845V1200H0V924Z" fill="#466654"/>
+  <circle cx="302" cy="232" r="142" fill="#F3B66B"/>
+  <rect x="527" y="416" width="562" height="319" rx="34" fill="#FFF8ED"/>
+  <path d="M470 459L809 239L1147 459H470Z" fill="#955A39"/>
+  <rect x="606" y="529" width="179" height="206" fill="#CAA178"/>
+  <rect x="837" y="529" width="181" height="131" fill="#E4B477"/>
+  <path d="M225 611C279 513 385 486 457 561C530 635 499 770 404 804C309 838 171 711 225 611Z" fill="#A7B993"/>
+  <path d="M1194 622C1256 524 1364 513 1429 579C1494 645 1464 770 1370 802C1276 833 1132 720 1194 622Z" fill="#A7B993"/>
+  <rect x="574" y="898" width="453" height="110" rx="55" fill="#FFF4E6"/>
+  <text x="800" y="966" text-anchor="middle" fill="#7A4A2D" font-family="Georgia, serif" font-size="50">Weekend retreat</text>
+</svg>

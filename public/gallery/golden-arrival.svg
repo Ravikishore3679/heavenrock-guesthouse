@@ -1,0 +1,14 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#F4E6D1"/>
+  <circle cx="1230" cy="235" r="130" fill="#F5BC69"/>
+  <path d="M0 737C196 683 353 686 473 746C593 806 744 837 939 807C1133 776 1288 666 1600 699V1200H0V737Z" fill="#6F8D74"/>
+  <path d="M0 830C183 793 327 797 433 848C539 900 698 942 901 913C1104 883 1290 769 1600 804V1200H0V830Z" fill="#48614E"/>
+  <rect x="312" y="476" width="604" height="328" rx="28" fill="#FFF7EC"/>
+  <rect x="370" y="566" width="184" height="238" fill="#D5B48B"/>
+  <rect x="590" y="566" width="262" height="174" fill="#C98658"/>
+  <path d="M269 506L608 301L953 506H269Z" fill="#8F5434"/>
+  <path d="M254 528H967L1002 603H221L254 528Z" fill="#6C4128"/>
+  <rect x="883" y="580" width="205" height="89" rx="16" fill="#FFF0D8"/>
+  <rect x="947" y="903" width="395" height="108" rx="54" fill="#F8F0E3"/>
+  <text x="1144" y="971" text-anchor="middle" fill="#6C4128" font-family="Georgia, serif" font-size="52">Heavenrock</text>
+</svg>

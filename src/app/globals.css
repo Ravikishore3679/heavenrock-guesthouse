@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6efe3;
+  --foreground: #1f2933;
+  --muted: #6e6255;
+  --panel: rgba(255, 251, 244, 0.78);
+  --line: rgba(78, 59, 40, 0.12);
+  --accent: #9a3412;
+  --accent-soft: #f4d9c4;
+  --forest: #365746;
+  --sun: #f6b76f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+  background-image:
+    radial-gradient(circle at top left, rgba(246, 183, 111, 0.35), transparent 30%),
+    radial-gradient(circle at top right, rgba(54, 87, 70, 0.18), transparent 32%),
+    linear-gradient(180deg, #fcf8f2 0%, #f6efe3 48%, #f3e7d5 100%);
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(154, 52, 18, 0.16);
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.glass-panel {
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(78, 59, 40, 0.08);
+}
+
+.section-shell {
+  border: 1px solid var(--line);
+  background: rgba(255, 251, 244, 0.82);
+  box-shadow: 0 24px 70px rgba(78, 59, 40, 0.08);
 }
