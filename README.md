@@ -37,8 +37,9 @@ npm run dev
 1. Create a Supabase project.
 2. In Storage, create a public bucket named `heavenrock-gallery`.
 3. Inside that bucket, upload photos into a `gallery/` folder.
-4. Run the SQL in `supabase/gallery.sql` in the Supabase SQL editor.
-5. Add these environment variables to `.env.local`:
+4. Run the SQL in [supabase/gallery.sql](supabase/gallery.sql) in the Supabase SQL editor.
+5. Open the Table Editor or API settings afterward and refresh the schema cache if Supabase still does not see `gallery_photos`.
+6. Add these environment variables to `.env.local`:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your-project-url

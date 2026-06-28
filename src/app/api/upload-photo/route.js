@@ -20,9 +20,29 @@ function createFilePath(title, file) {
   return `gallery/${Date.now()}-${safeTitle}.${extension}`;
 }
 
+async function ensureGalleryBucket(client, bucket) {
+  const { data: buckets, error: listError } = await client.storage.listBuckets();
+
+  if (listError) {
+    return listError;
+  }
+
+  const existingBucket = buckets?.find((item) => item.name === bucket);
+
+  if (existingBucket) {
+    return null;
+  }
+
+  const { error: createError } = await client.storage.createBucket(bucket, {
+    public: true,
+  });
+
+  return createError || null;
+}
+
 export async function POST(request) {
   const client = createServiceSupabaseClient();
-  const uploadKey = process.env.GALLERY_UPLOAD_KEY;
+  const uploadKey = String(process.env.GALLERY_UPLOAD_KEY || "").trim();
 
   if (!client || !uploadKey) {
     return Response.json(
@@ -32,7 +52,7 @@ export async function POST(request) {
   }
 
   const formData = await request.formData();
-  const providedUploadKey = formData.get("uploadKey");
+  const providedUploadKey = String(formData.get("uploadKey") || "").trim();
   const file = formData.get("photo");
   const title = String(formData.get("title") || "").trim();
   const description = String(formData.get("description") || "").trim();
@@ -40,7 +60,10 @@ export async function POST(request) {
   const sortOrder = Number(formData.get("sortOrder") || 100);
 
   if (providedUploadKey !== uploadKey) {
-    return Response.json({ error: "Upload key is invalid." }, { status: 401 });
+    return Response.json(
+      { error: "Upload key is invalid. Use the private key from your .env.local file." },
+      { status: 401 },
+    );
   }
 
   if (!(file instanceof File)) {
@@ -57,6 +80,15 @@ export async function POST(request) {
   const filePath = createFilePath(title, file);
   const fileBytes = Buffer.from(await file.arrayBuffer());
   const bucket = getSupabaseBucket();
+
+  const bucketError = await ensureGalleryBucket(client, bucket);
+
+  if (bucketError) {
+    return Response.json(
+      { error: `Unable to create or access bucket "${bucket}": ${bucketError.message}` },
+      { status: 500 },
+    );
+  }
 
   const { error: uploadError } = await client.storage.from(bucket).upload(filePath, fileBytes, {
     cacheControl: "3600",
@@ -79,6 +111,17 @@ export async function POST(request) {
 
   if (insertError) {
     await client.storage.from(bucket).remove([filePath]);
+
+    if (insertError.message?.toLowerCase().includes("could not find the table")) {
+      return Response.json(
+        {
+          error:
+            'Supabase table "gallery_photos" is missing. Run supabase/gallery.sql in the Supabase SQL editor, then refresh the schema cache and try again.',
+        },
+        { status: 500 },
+      );
+    }
+
     return Response.json({ error: insertError.message }, { status: 500 });
   }
 

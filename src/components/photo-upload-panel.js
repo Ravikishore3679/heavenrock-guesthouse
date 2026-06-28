@@ -164,11 +164,15 @@ export default function PhotoUploadPanel({ uploadEnabled }) {
             type="password"
             name="uploadKey"
             className="field-input"
+            placeholder="Private key from .env.local"
             value={formState.uploadKey}
             onChange={updateField}
             disabled={!uploadEnabled || isSubmitting}
             required
           />
+          <span className="text-xs leading-6 text-[color:var(--muted)]">
+            Use the private upload key stored in your local environment file.
+          </span>
         </label>
 
         <div className="md:col-span-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

@@ -1,7 +1,17 @@
 import { createClient } from "@supabase/supabase-js";
 
 export function getSupabaseUrl() {
-  return process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+  if (!rawUrl) {
+    return null;
+  }
+
+  return rawUrl
+    .trim()
+    .replace(/\/rest\/v1\/?$/i, "")
+    .replace(/\/storage\/v1\/?$/i, "")
+    .replace(/\/$/, "");
 }
 
 export function getSupabaseBucket() {
