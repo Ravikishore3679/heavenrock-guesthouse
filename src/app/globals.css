@@ -56,3 +56,36 @@ a {
   background: rgba(255, 251, 244, 0.82);
   box-shadow: 0 24px 70px rgba(78, 59, 40, 0.08);
 }
+
+.field-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 1.2rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.78);
+  padding: 0.95rem 1rem;
+  color: var(--foreground);
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: rgba(154, 52, 18, 0.45);
+  box-shadow: 0 0 0 4px rgba(154, 52, 18, 0.08);
+}
+
+.field-file {
+  padding-block: 0.7rem;
+}

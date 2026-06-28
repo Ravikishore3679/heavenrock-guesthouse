@@ -1,3 +1,5 @@
+import { createPublicSupabaseClient, getSupabaseBucket } from "@/lib/supabase";
+
 const fallbackPhotos = [
   {
     id: "sunrise-lawn",
@@ -21,24 +23,6 @@ const fallbackPhotos = [
     alt: "Illustration of a resort-style weekend stay at Heavenrock guesthouse",
   },
 ];
-
-function createSupabaseClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anonKey) {
-    return null;
-  }
-
-  const { createClient } = require("@supabase/supabase-js");
-
-  return createClient(url, anonKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
-}
 
 function toPublicImageUrl(client, bucket, imagePath) {
   if (!imagePath) {
@@ -86,8 +70,8 @@ function mapStoragePhotos(client, bucket, objects) {
 }
 
 export async function getGalleryPhotos() {
-  const client = createSupabaseClient();
-  const bucket = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || "heavenrock-gallery";
+  const client = createPublicSupabaseClient();
+  const bucket = getSupabaseBucket();
 
   if (!client) {
     return fallbackPhotos;

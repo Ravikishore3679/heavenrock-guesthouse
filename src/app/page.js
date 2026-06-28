@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { getGalleryPhotos } from "@/lib/gallery";
+import PhotoUploadPanel from "@/components/photo-upload-panel";
+import { isGalleryUploadConfigured } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +47,7 @@ const stats = [
 
 export default async function Home() {
   const galleryPhotos = await getGalleryPhotos();
+  const uploadEnabled = isGalleryUploadConfigured();
 
   return (
     <main className="relative overflow-hidden">
@@ -217,6 +220,8 @@ export default async function Home() {
             </article>
           ))}
         </div>
+
+        <PhotoUploadPanel uploadEnabled={uploadEnabled} />
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-14 sm:px-10 lg:grid-cols-[1fr_0.9fr] lg:px-12">

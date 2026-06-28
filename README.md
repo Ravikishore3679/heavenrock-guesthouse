@@ -44,6 +44,8 @@ npm run dev
 NEXT_PUBLIC_SUPABASE_URL=your-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 NEXT_PUBLIC_SUPABASE_BUCKET=heavenrock-gallery
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+GALLERY_UPLOAD_KEY=choose-a-private-upload-password
 ```
 
 ## How photo updates work
@@ -51,6 +53,13 @@ NEXT_PUBLIC_SUPABASE_BUCKET=heavenrock-gallery
 - If `gallery_photos` rows exist and are marked `is_published = true`, the homepage reads them first.
 - If no rows exist, the homepage falls back to listing files from the `gallery/` folder in Supabase Storage.
 - Because the home page is server-rendered dynamically, new photos can appear without rebuilding the site.
+
+## Uploading from the website
+
+- The gallery section now includes an owner upload form.
+- Enter the private `GALLERY_UPLOAD_KEY`, choose an image, and submit the metadata.
+- The server uploads the image to Supabase Storage and inserts the `gallery_photos` row automatically.
+- This flow requires `SUPABASE_SERVICE_ROLE_KEY` and `GALLERY_UPLOAD_KEY` to be present in the environment.
 
 ## Adding new gallery images
 
